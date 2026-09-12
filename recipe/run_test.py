@@ -6,8 +6,7 @@ import numpy as np
 
 
 if sys.platform == "linux":
-    os.environ.setdefault("LIBGL_ALWAYS_SOFTWARE", "1")
-    os.environ.setdefault("PYOPENGL_PLATFORM", "egl")
+    os.environ.setdefault("PYOPENGL_PLATFORM", "osmesa")
 
 import genesis as gs
 from genesis.utils.misc import tensor_to_array
