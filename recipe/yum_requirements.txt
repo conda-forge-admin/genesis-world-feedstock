@@ -1,1 +1,1 @@
-mesa-libOSMesa
+xorg-x11-server-Xvfb

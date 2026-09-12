@@ -79,7 +79,7 @@ tests:
       pip_check: true
       python_version: ${{ python_min }}.*
   - script:
-      - python run_test.py
+      - xvfb-run -a python run_test.py
       - gs --help
     files:
       recipe:
@@ -87,6 +87,7 @@ tests:
     requirements:
       run:
         - python ${{ python_min }}.*
+        - mesalib
 
 about:
   homepage: https://genesis-embodied-ai.github.io/

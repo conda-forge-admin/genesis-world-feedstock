@@ -6,7 +6,11 @@ import numpy as np
 
 
 if sys.platform == "linux":
-    os.environ.setdefault("PYOPENGL_PLATFORM", "osmesa")
+    os.environ.setdefault("LIBGL_ALWAYS_SOFTWARE", "1")
+    os.environ["PYOPENGL_PLATFORM"] = "glx"
+    import OpenGL.GL  # Load PyOpenGL's GLX backend before selecting Genesis's Pyglet context.
+
+    os.environ["PYOPENGL_PLATFORM"] = "pyglet"
 
 import genesis as gs
 from genesis.utils.misc import tensor_to_array
