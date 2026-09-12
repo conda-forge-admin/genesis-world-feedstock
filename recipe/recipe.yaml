@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: genesis-world
-  version: "1.4.0"
+  version: "1.4.1"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/Genesis-Embodied-AI/genesis-world/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 893029b068cd5185694d9f274c018bb4cb9158a3cb2cafb83316b0a862e33acd
+  sha256: 7fd88af83cc227eb4be3b0abd43e44c8b5335b769d783012baccaea247762827
   patches:
     # Remove once upstream metadata no longer conflicts with conda-forge's
     # moviepy stack and the optional binary helpers can be redistributed.
