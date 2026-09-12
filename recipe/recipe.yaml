@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: genesis-world
-  version: "1.3.3"
+  version: "1.4.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/Genesis-Embodied-AI/genesis-world/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: b7ef47f0ff694fc93d31b7a195786aff0c6c7790376ee415345543202f5cb914
+  sha256: 893029b068cd5185694d9f274c018bb4cb9158a3cb2cafb83316b0a862e33acd
   patches:
     # Remove once upstream metadata no longer conflicts with conda-forge's
     # moviepy stack and the optional binary helpers can be redistributed.
@@ -54,7 +54,7 @@ requirements:
     - py-cpuinfo
     - py-opencv
     - pycollada
-    - pydantic >=2.11.0
+    - pydantic >=2.13.0
     - pygel3d
     - pyglet >=1.5,!=2.1.8
     - pygltflib >=1.16.0,<1.17
@@ -72,10 +72,14 @@ requirements:
     - z3-solver <4.15.5.0
 
 tests:
+  - python:
+      imports:
+        - genesis
+        - genesis.vis.batch_renderer
+      pip_check: true
+      python_version: ${{ python_min }}.*
   - script:
-      - python -c "import genesis; import genesis.vis.batch_renderer"
-      - pip check
-      - python run_test.py
+      - xvfb-run -a python run_test.py
       - gs --help
     files:
       recipe:
@@ -83,7 +87,7 @@ tests:
     requirements:
       run:
         - python ${{ python_min }}.*
-        - pip
+        - mesalib
 
 about:
   homepage: https://genesis-embodied-ai.github.io/
@@ -97,5 +101,6 @@ about:
   documentation: https://genesis-world.readthedocs.io/
 
 extra:
+  feedstock-name: genesis-world
   recipe-maintainers:
     - jeongseok-meta
